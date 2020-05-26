@@ -16,10 +16,11 @@
   ;;get the path and check that it's valid
   (let* ((path (parse-req-path s))
          (route (car(string-split path "/")))
-	 (file (conc route ".html")))
-    (printf path)
-    (printf file)
-    (string-join (append (read-lines(open-input-file file))_200_))))
+	 (file (conc route ".html"))
+	 ;(ctype ())
+	 ;(clen  ())
+	 )
+    (string-append (string-join (read-lines(open-input-file file)))_200_)))
 
 (define (parse-req-path s)
   (car (cdr (string-split s))))

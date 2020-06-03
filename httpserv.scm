@@ -1,5 +1,6 @@
 (import socket)
 (import (chicken format))
+(import (chicken file posix))
 (import (chicken string))
 (import (chicken io))
 (require-extension srfi-13)
@@ -50,12 +51,12 @@
     ;;respond
     ;;should do a filewrite here
     (printf "recvd:  ~A~%" received-data)
-    (let* ((content (check_req received-data))
-           (header (set-resp-header))
-           (resp (conc header content)))
-      (printf resp)
-      ;(file-write connected-socket resp))
-      (socket-send connected-socket resp))
+    (let* ((content (check_req received-data)))
+           ;(header (set-resp-header))
+           ;(resp (conc header content)))
+      (printf content)
+      (file-write (socket-fileno connected-socket) content))
+      ;(socket-send connected-socket resp))
 
     (socket-close connected-socket)
     (socket-close sock)))

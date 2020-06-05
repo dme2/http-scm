@@ -11,10 +11,11 @@
 (bind "size_t strlen(const char *);")
 (define _200_ "HTTP/1.1 200 OK\r\n")
 (define _404_ "HTTP/1.1 404 Not Found\r\n\n")
-(define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\not allowed\n")
+(define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\n")
 (define port 8000)
 (define content-type "Content-Type: text/html\r\n")
 (define content-length "Content-Length: % \r\n\r\n ")
+(define not-allowed "Not allowed")
 (define not-found "File Not Found!")
 
 (define (get-header len)
@@ -41,7 +42,7 @@
 (define (check_req s)
   (cond
    ((substring=? s "GET" 0 0 3) (process-get s))
-    (else conc _404_ not found)))
+    (else conc _405_ not-allowed)))
 
 (let ((sock (socket af/inet sock/stream))
       (backlog 1))

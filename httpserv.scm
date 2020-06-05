@@ -4,23 +4,22 @@
 (import (chicken file posix))
 (import (chicken string))
 (import (chicken io))
+(import (chicken file))
 (import bind)
 (require-extension srfi-13)
 
 (bind "size_t strlen(const char *);")
 (define _200_ "HTTP/1.1 200 OK\r\n")
-(define _404_ "HTTP/1.1 404 Not Found\r\n\notfound\n")
+(define _404_ "HTTP/1.1 404 Not Found\r\n\n")
 (define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\not allowed\n")
 (define port 8000)
 (define content-type "Content-Type: text/html\r\n")
 (define content-length "Content-Length: % \r\n\r\n ")
-
-;;needs to send a file (using connected-socket(file-descriptor)) instead of just plain text - although that works for now.
-
+(define not-found "File Not Found!")
 
 (define (get-header len)
   (let* ((s-len (number->string len)))
-    (conc content-type
+    (conc _200_ content-type
          (string-translate*
           content-length `(("%" . ,s-len )) ))))
 
@@ -31,13 +30,10 @@
   ;;get the path and check that it's valid
   (let* ((path (parse-req-path s))
          (route (if (= 1 (string-length path))
-                    "index"
-                    (car(string-split path "/"))))
-	 (file (conc route ".html"))
-	 ;(ctype ())
-	 ;(clen  ())
-	 )
-    (string-join (read-lines(open-input-file file)))))
+                    "index.html"
+                    (car(string-split path "/")))))
+    (if (file-exists? route) (string-join (read-lines(open-input-file route)))
+        (conc _404_ not-found))))
 
 (define (parse-req-path s)
   (car (cdr (string-split s))))
@@ -45,7 +41,7 @@
 (define (check_req s)
   (cond
    ((substring=? s "GET" 0 0 3) (process-get s))
-    (else _404_)))
+    (else conc _404_ not found)))
 
 (let ((sock (socket af/inet sock/stream))
       (backlog 1))
@@ -61,11 +57,10 @@
     ;;should do a filewrite here
     (printf "recvd:  ~A~%" received-data)
     (let* ((content (check_req received-data))
-           (header (get-header (strlen content)))
-           (resp (conc _200_ header content)))
+           (header (if (substring=? content "404" 9 0 3) ""
+                       (get-header (strlen content))))
+           (resp (conc header content)))
       ;(printf content)
       (file-write (socket-fileno connected-socket) content))
-      ;(socket-send connected-socket resp))
-
     (socket-close connected-socket)
     (socket-close sock)))

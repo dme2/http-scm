@@ -1,10 +1,12 @@
 (import socket)
+(import simple-loops)
 (import (chicken format))
 (import (chicken foreign))
 (import (chicken file posix))
 (import (chicken string))
 (import (chicken io))
 (import (chicken file))
+(import (chicken process))
 (import bind)
 (require-extension srfi-13)
 
@@ -44,24 +46,28 @@
    ((substring=? s "GET" 0 0 3) (process-get s))
     (else conc _405_ not-allowed)))
 
-(let ((sock (socket af/inet sock/stream))
-      (backlog 1))
-  (socket-bind sock (inet-address "127.0.0.1" port))
-  (socket-listen sock backlog)
-  ;;connected-socket is our socket fd
-  (let* ((connected-socket (socket-accept sock))
-         (message-len 1024)
-         ;;receive
-         (received-data (socket-receive connected-socket
+(define (serve)
+   (let ((sock (socket af/inet sock/stream))
+         (backlog 1))
+     (socket-bind sock (inet-address "127.0.0.1" port))
+     (socket-listen sock backlog)
+     ;;connected-socket is our socket fd
+     ;;put this named let in a do-while loop and fork the process
+     (let* ((connected-socket (socket-accept sock))
+            (message-len 1024)
+            ;;receive
+            (received-data (socket-receive connected-socket
                                         message-len)))
-    ;;respond
-    ;;should do a filewrite here
-    (printf "recvd:  ~A~%" received-data)
-    (let* ((content (check_req received-data))
-           (header (if (substring=? content "404" 9 0 3) ""
-                       (get-header (strlen content))))
-           (resp (conc header content)))
-      ;(printf content)
-      (file-write (socket-fileno connected-socket) content))
-    (socket-close connected-socket)
-    (socket-close sock)))
+       ;;respond
+       ;;should do a filewrite here
+       (printf "recvd:  ~A~%" received-data)
+       (let* ((content (check_req received-data))
+              (header (if (substring=? content "404" 9 0 3) ""
+                          (get-header (strlen content))))
+              (resp (conc header content)))
+              ;(printf content)
+         (file-write (socket-fileno connected-socket) content))
+       (socket-close connected-socket)
+       (socket-close sock))))
+;start server
+(serve)

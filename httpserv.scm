@@ -48,11 +48,13 @@
 
 (define (serve)
    (let ((sock (socket af/inet sock/stream))
-         (backlog 1))
+         (backlog 1)
+	 (loopvar 1))
      (socket-bind sock (inet-address "127.0.0.1" port))
      (socket-listen sock backlog)
      ;;connected-socket is our socket fd
      ;;put this named let in a do-while loop and fork the process
+     ;(do-while (= loopvar 1))
      (let* ((connected-socket (socket-accept sock))
             (message-len 1024)
             ;;receive

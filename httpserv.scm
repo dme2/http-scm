@@ -54,22 +54,31 @@
      (socket-listen sock backlog)
      ;;connected-socket is our socket fd
      ;;put this named let in a do-while loop and fork the process
-     ;(do-while (= loopvar 1))
+     (do-while (= loopvar 1)
      (let* ((connected-socket (socket-accept sock))
-            (message-len 1024)
+            (message-len 1024))
             ;;receive
-            (received-data (socket-receive connected-socket
-                                        message-len)))
-       ;;respond
-       ;;should do a filewrite here
-       (printf "recvd:  ~A~%" received-data)
-       (let* ((content (check_req received-data))
-              (header (if (substring=? content "404" 9 0 3) ""
-                          (get-header (strlen content))))
-              (resp (conc header content)))
+       (if (= (socket-fileno connected-socket) -1)
+           (printf "continuing\n")
+           ;(set! received-data (socket-receive connected-socket
+           ;       message-len)))
+           (cond ((= (process-fork) 0)             
+                  (set! c-sock connected-socket)
+                  (set! loopvar 0)
+                  (set! msg-len message-len)) 
+               (else socket-close connected-socket)))))
+     
+     (set! received-data (socket-receive c-sock
+            msg-len))
+     (printf "recvd:  ~A~%" received-data)
+     (let* ((content (check_req received-data))
+            (header (if (substring=? content "404" 9 0 3) ""
+                        (get-header (strlen content))))
+            (resp (conc header content)))
               ;(printf content)
-         (file-write (socket-fileno connected-socket) content))
-       (socket-close connected-socket)
-       (socket-close sock))))
+       (file-write (socket-fileno c-sock) resp))
+       ;(socket-close connected-socket)
+     (socket-close sock)))
+
 ;start server
 (serve)

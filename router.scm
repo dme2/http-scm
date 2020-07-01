@@ -1,0 +1,3 @@
+;; todo
+;; needs to read the request and determine the correct response
+;; bad request gets 405, if the file does not exist, 404, etc...

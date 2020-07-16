@@ -31,7 +31,8 @@
 
 ;; GET -PATH -VERSION
 ;;return "route".html
-(define (process-get s)
+;;need to replace this with proper router
+(define (process-req s)
   (printf "processing\n")
   ;;get the path and check that it's valid
   (let* ((path (parse-req-path s))
@@ -44,9 +45,9 @@
 (define (parse-req-path s)
   (car (cdr (string-split s))))
 
-(define (check_req s)
+(define (check-req s)
   (cond
-   ((substring=? s "GET" 0 0 3) (process-get s))
+   ((substring=? s "GET" 0 0 3) (process-req s))
     (else conc _405_ not-allowed)))
 
 (define (serve addr port)
@@ -74,7 +75,7 @@
      (set! received-data (socket-receive c-sock
             msg-len))
      (printf "recvd:  ~a~%" received-data)
-     (let* ((content (check_req received-data))
+     (let* ((content (check-req received-data))
             (header (if (substring=? content "404" 9 0 3) ""
                         (get-header (strlen content))))
             (resp (conc header content)))
@@ -109,7 +110,7 @@
      (set! received-data (socket-receive c-sock
             msg-len))
      (printf "recvd:  ~a~%" received-data)
-     (let* ((content (check_req received-data))
+     (let* ((content (check-req received-data))
             (header (if (substring=? content "404" 9 0 3) ""
                         (get-header (strlen content))))
             (resp (conc header content)))

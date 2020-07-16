@@ -1,5 +1,5 @@
 ;; the renderer is a macro based function render define
-;; 	(render (html-xprs)) 
+;; 	(render (html-xprs . html-xprs)) 
 ;; so for example
 ;; we have a string that defines our web page as so:
 ;; 	(define s "<h1> hello <\h1> <p> this is a web page <\p>) 
@@ -11,8 +11,8 @@
 ;;	a. we can append multiple html strings into one html document
 ;;	b. we can evaluate functions inside of the html definitions
 ;; 		e.g
-;;			(define x "<h1> |fetch_text <h1>")
-;;	will result in a string composed of whatever fetch_text returns
+;;			(define html-xpr-list "<h1>" fetch_text "</h1>")
+;;	will result in a string composed of whatever fetch_text returns inside of the h1 tags
 ;;
 
 ;; the macro will pass each html string to string-translate* where we can fill in 

@@ -20,6 +20,7 @@
   ())
 
 ;; the renderer takes a list of "html expressiosn and creates an html file" 
+;; do we need a macro?
 ;(define-er-macro (render filename (html-xprs))
 ;  %
 ;  `(,%let* ((,%html-str (,%parse ,html-xprs)))

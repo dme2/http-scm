@@ -38,5 +38,6 @@
 ;;(define (build-router router-set (valid-routes))
 ;;  ())
 
-;; build the router
 (print (read-files "/home/dave/projects/stevie-scm"))
+
+;; if the file starts in ".", we're not serving it

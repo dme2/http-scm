@@ -17,7 +17,7 @@
 (define _200_ "HTTP/1.1 200 OK\r\n")
 (define _404_ "HTTP/1.1 404 Not Found\r\n\n")
 (define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\n")
-;(define port 8000)
+(define port 8000)
 (define content-type "Content-Type: text/html\r\n")
 (define content-length "Content-Length: % \r\n\r\n ")
 (define not-allowed "Not allowed")

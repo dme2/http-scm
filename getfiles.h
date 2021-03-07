@@ -4,20 +4,20 @@
 #include <stdlib.h>
 
 char* getDirList(char* directory) {
-               DIR *d;
-               char* res = calloc(1024,sizeof(char));
-               struct dirent *dir;
-               d = opendir(directory);
-               if (d) {
-                       while((dir = readdir(d)) != NULL){
-                         char temp[50];
-                         strcpy(temp,dir->d_name);
-                              strcat(temp,"\n");
-                         strcat(res,temp);
-                        }
-                       closedir(d);
-               }
-               return res;
+  DIR *d;
+  char* res = calloc(1024,sizeof(char));
+  struct dirent *dir;
+  d = opendir(directory);
+  if (d) {
+    while((dir = readdir(d)) != NULL){
+      char temp[50];
+      strcpy(temp,dir->d_name);
+      strcat(temp,"\n");
+      strcat(res,temp);
+    }
+    closedir(d);
+  }
+  return res;
 }
 
 /*

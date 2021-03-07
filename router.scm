@@ -8,10 +8,11 @@
 (require-extension bind)
 ;;(use srfi-4)
 (require-extension srfi-13)
-(require-extension srfi-113) ;; for sets
-(require-extension srfi-128) ;; comparitors for the set
+(require-extension srfi-69) ;; hash tables
 
 (foreign-declare "#include \"getfiles.h\"")
+
+(define filepath (->string "/home/dave/projects/stevie-scm"))
 
 (define get-files
   (foreign-lambda*
@@ -20,23 +21,34 @@
     C_return(result);"
    ))
 
-;; comparitor
-;;(make-comparitor string? string=? string<? string-hash)
-
 ;; read from a folder - our routable files
 (define (read-files fp)
-  (let ((files (getFiles fp)))
-    
-    map string-chomp files
+  (let ((files (->string (get-files fp))))
+    (string-split files "\n")
     ))
 ;; our empty router set
-;;(define route-set (set string? ))
+(define route-table (make-hash-table))
 
-;; build and return a router (a function that looks up routes using a set) 
-;; e.g. usage (let* ((router (build-router set routes))))
-;; then we query the router given valid html strings
-;;(define (build-router router-set (valid-routes))
-;;  ())
+(define (is-dotfile str)
+  (substring=? str "." 0 0 1))
 
-;; build the router
-(print (read-files "/home/dave/projects/stevie-scm"))
+(define (iter-over ht li)
+  (if (not(eq? '() li))
+	  (begin
+		(if (is-dotfile (car li))
+			(iter-over ht (cdr li))
+			(hash-table-set! ht (car li) 1))
+		(iter-over ht (cdr li)))))
+
+(define (build-table ht path)
+  (iter-over ht (read-files path)))
+
+(build-table route-table filepath)
+
+;; gives us a (header content) tuple
+
+(define verify-req (req)
+  ())
+
+(define (route r-table)
+  ())

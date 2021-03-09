@@ -1,13 +1,8 @@
-;; needs to read the request and determine the correct response
-;; bad request gets 405, if the file does not exist, 404, etc...
-
-;; if the given string is in the set, then return the route, otherwise, 404
-
 (import (chicken string))
 (import (chicken foreign))
 (require-extension bind)
 ;;(use srfi-4)
-(require-extension srfi-13)
+(require-extension srfi-13) ;; string-join
 (require-extension srfi-69) ;; hash tables
 
 (foreign-declare "#include \"getfiles.h\"")
@@ -45,10 +40,37 @@
 
 (build-table route-table filepath)
 
-;; gives us a (header content) tuple
+(define _200_ "HTTP/1.1 200 OK\r\n")
+(define _404_ "HTTP/1.1 404 Not Found\r\n\n")
+(define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\n")
+(define content-type "Content-Type: text/html\r\n")
+(define content-length "Content-Length: % \r\n\r\n ")
+(define not-allowed "Not allowed")
+(define not-found "File Not Found!")
 
-(define verify-req (req)
-  ())
+;; only GET's
+(define (verify-req req)
+  (if (substring=? req "GET" 0 0 3)
+	  #t
+	  #f))
 
-(define (route r-table)
-  ())
+(define (parse-req-path s)
+  (car (cdr (string-split s))))
+
+(define (process-req s ht)
+  ;;get the path and check that it's valid
+  (let* ((path (parse-req-path s))
+         (route (if (= 1 (string-length path))
+                    "index.html"
+                    (car(string-split path "/")))))
+    (if (hash-table-exists? ht route)
+		(conc (_200_) (string-join (read-lines(open-input-file route))))
+        (conc _404_ not-found))))
+
+;; let header = if verify-req...
+(define (route r-table req)
+  (if (not(verify-req req))
+	  (let ((header (_405_))
+			(content not-allowed))
+		conc header content)
+	  (process-req r-table req)))

@@ -12,7 +12,7 @@
 (import (chicken process))
 (import bind)
 (require-extension srfi-13)
-(import router)
+(load "router.scm")
 
 (bind "size_t strlen(const char *);")
 (define _200_ "HTTP/1.1 200 OK\r\n")
@@ -110,13 +110,8 @@
      (set! received-data (socket-receive c-sock
             msg-len))
      (printf "recvd:  ~a~%" received-data)
-     (let* ((content (check-req received-data))
-            (header (if (substring=? content "404" 9 0 3)
-                        (get-header (strlen content))))
-            (resp (conc header content)))
-              ;(printf content)
-       (file-write (socket-fileno c-sock) resp))
-       ;(socket-close connected-socket)
+     (let* ((resp (route received-data))
+       (file-write (socket-fileno c-sock) resp)))
      (socket-close sock)))
 
 ;start server

@@ -7,7 +7,7 @@
 
 (foreign-declare "#include \"getfiles.h\"")
 
-(define filepath (->string "/home/dave/projects/stevie-scm"))
+(define filepath (->string "/home/dave/projects/stevie-scm/tests/www/"))
 
 (define get-files
   (foreign-lambda*
@@ -28,7 +28,7 @@
   (substring=? str "." 0 0 1))
 
 (define (iter-over ht li)
-  (if (not(eq? '() li))
+  (if (not(null-list? li))
 	  (begin
 		(if (is-dotfile (car li))
 			(iter-over ht (cdr li))
@@ -54,6 +54,7 @@
 	  #t
 	  #f))
 
+;; todo: get the end of the path i.e. the actual file
 (define (parse-req-path s)
   (car (cdr (string-split s))))
 
@@ -64,7 +65,7 @@
                     "index.html"
                     (car(string-split path "/")))))
     (if (hash-table-exists? ht route)
-		(conc (_200_) (string-join (read-lines(open-input-file route))))
+		(conc (_200_) (string-join (read-lines(open-input-file (conc filepath route)))))
         (conc _404_ not-found))))
 
 ;; let header = if verify-req...

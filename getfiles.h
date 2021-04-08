@@ -19,12 +19,3 @@ char* getDirList(char* directory) {
   }
   return res;
 }
-
-/*
-int main(){
-  char *res = getDirList("/home/dave/projects");
-  printf("running\n");
-  printf(res);
-  return 0;
-}
-*/

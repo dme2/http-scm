@@ -6,5 +6,6 @@ need to add:
 todo:
     [x] fix httpserver - add router functionality
     [x] make router module
-    [] test httpserver
-
+    [x] test httpserver
+    [x] append file types dynamically
+    [ ] get address/port from user input

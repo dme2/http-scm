@@ -51,7 +51,7 @@
 ;; (build-table route-table filepath)
 
 (define _200_ "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 155\r\nConnection: keep-alive\r\n\r\n")
-(define _404_ "HTTP/1.1 404 Not Found\r\n\n")
+(define _404_ "HTTP/1.1 404 Not Found\r\n\r\n")
 (define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\n")
 (define content-type "Content-Type: text/html\r\n")
 (define content-length "Content-Length: % \r\n\r\n ")
@@ -73,7 +73,7 @@
   (let* ((path (parse-req-path (->string s)))
          (f_route (if (= 1 (string-length path))
                     "index.html"
-                    (car(string-split path "/")))))
+                    (conc (car (string-split path "/")) ".html"))))
     (if (hash-table-exists? ht f_route)
 		(conc _200_ (string-join (read-lines(open-input-file (conc filepath f_route)))))
         (conc _404_ not-found))))

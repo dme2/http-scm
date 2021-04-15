@@ -14,7 +14,7 @@
 
 ;;(bind* "#include \"getfiles.h\"")
 
-(define filepath (->string "/home/dave/projects/stevie-scm/tests/www/"))
+(define filepath (->string "/root/stevie-scm/tests/www/"))
 
 ;;(define get-files
 ;;  (foreign-lambda*
@@ -52,7 +52,7 @@
 
 ;; (build-table route-table filepath)
 
-(define _200_ "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: keep-alive\r\n")
+(define _200_ "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n")
 (define _404_ "HTTP/1.1 404 Not Found\r\n\r\n")
 (define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\n")
 (define content-type "Content-Type: text/html\r\n")

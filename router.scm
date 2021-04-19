@@ -1,4 +1,4 @@
-(module router (route build-table) 
+(module router (route build-table)
 (import scheme (chicken base))
 (import (chicken memory representation))
 (import (chicken io))
@@ -14,7 +14,7 @@
 
 ;;(bind* "#include \"getfiles.h\"")
 
-(define filepath (->string "/root/stevie-scm/tests/www/"))
+(define filepath (->string "/home/dave/projects/stevie-scm/tests/www/"))
 
 ;;(define get-files
 ;;  (foreign-lambda*
@@ -36,7 +36,7 @@
 
 ;; (define (null-list? l)
 ;;  ())
-		
+
 
 (define (iter-over ht li)
   (if (not(length=0? li))

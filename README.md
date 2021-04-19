@@ -8,4 +8,5 @@ todo:
     [x] make router module
     [x] test httpserver
     [x] append file types dynamically
-    [ ] get address/port from user input
+    [] get address/port from user input
+    [] fix router hash table generation (should only happen when httpserv is started)

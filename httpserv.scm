@@ -59,8 +59,11 @@
 	sock))
 
 (define (poll-recv csock)
-  (let* ((received-data (socket-receive csock 1024)))
-	(poll-reply csock received-data)))
+  (let* ((received-data (socket-receive csock 32768)))
+	(if (> (string-length received-data) 0)
+		(poll-reply csock received-data)
+		(socket-close csock))))
+
 
 ;;send header and reply
 (define (poll-reply csock data)
@@ -93,6 +96,7 @@
    (let ((sock (socket af/inet sock/stream))
          (backlog 1)
 	 (loopvar 1))
+	 (socket-receive-timeout 15000)
      (socket-bind sock (inet-address "127.0.0.1" port))
      (socket-listen sock backlog)
 

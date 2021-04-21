@@ -14,7 +14,7 @@
 
 ;;(bind* "#include \"getfiles.h\"")
 
-(define filepath (->string "/home/dave/projects/stevie-scm/tests/www/"))
+(define filepath (->string "/root/stevie-scm/tests/www/"))
 
 ;;(define get-files
 ;;  (foreign-lambda*
@@ -52,13 +52,17 @@
 
 ;; (build-table route-table filepath)
 
-(define _200_ "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n")
+(define _200_ "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n")
 (define _404_ "HTTP/1.1 404 Not Found\r\n\r\n")
 (define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\n")
+(define _204_ "HTTP/1.1 204 No Content \r\n\r\n")
 (define content-type "Content-Type: text/html\r\n")
 (define content-length "Content-Length: ")
 (define not-allowed "Not allowed")
 (define not-found "File Not Found!")
+
+(define (check-for-favicon req) 
+  (substring=? req "favicon" 5 0 7))
 
 ;; only GET's
 (define (verify-req req)
@@ -92,6 +96,8 @@
 	  (let ((header _405_)
 		(content not-allowed))
 		conc header content)
-	  (let ((ht (build-table route-table filepath) ))
-	  	(process-req req ht))))
+	  (if (check-for-favicon req)
+	   	_204_
+	      	(let ((ht (build-table route-table filepath) ))
+	  		(process-req req ht)))))
 )

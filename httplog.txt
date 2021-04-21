@@ -1,0 +1,278 @@
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  
+recvd:  GET /favicon.ico HTTP/1.1
+Host: dmetwo.org
+Accept: image/*;q=0.8
+Accept-Language: en-us
+Connection: keep-alive
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (iPhone; CPU OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/33.0  Mobile/15E148 Safari/605.1.15
+
+
+reply:  HTTP/1.1 204 No Content 
+
+
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (iPhone; CPU OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/33.0  Mobile/15E148 Safari/605.1.15
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (iPhone; CPU OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/33.0  Mobile/15E148 Safari/605.1.15
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  
+recvd:  
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (iPhone; CPU OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/33.0  Mobile/15E148 Safari/605.1.15
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (iPhone; CPU OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/33.0  Mobile/15E148 Safari/605.1.15
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  GET /favicon.ico HTTP/1.1
+Host: dmetwo.org
+Connection: keep-alive
+Accept: */*
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1
+Accept-Language: en-us
+Referer: http://dmetwo.org/
+Accept-Encoding: gzip, deflate
+
+
+reply:  HTTP/1.1 204 No Content 
+
+
+recvd:  
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  GET / HTTP/1.1
+Host: dmetwo.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+reply:  HTTP/1.1 200 OK
+Content-Type: text/html
+Connection: close
+Content-Length: 450
+
+<html> 	<head> 	 	<link rel="icon" href="data:;base64,="> 	<title> homepage </title> 	</head> 	<body> 		<p> hello,welcome to my personal website brought to you by a small handcrafted http server/router written in chicken scheme (i apologize if it's a little slow, especially on mobile...it's a work in progress)</p> 		<p> i have a better looking and more professional blog you can check out <a href="https://dme2.dev"> here</a> </p> 	</body>  </html>
+recvd:  GET /.env HTTP/1.1
+Host: 157.245.137.107
+Connection: keep-alive
+Accept-Encoding: gzip, deflate
+Accept: */*
+User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36
+
+
+reply:  HTTP/1.1 404 Not Found
+
+File Not Found!
+recvd:  POST / HTTP/1.1
+Host: 157.245.137.107
+Connection: keep-alive
+Accept-Encoding: gzip, deflate
+Accept: */*
+User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36
+Content-Length: 20
+Content-Type: application/x-www-form-urlencoded
+
+0x%5B%5D=androxgh0st
+reply:  Not allowed
+recvd:  
+recvd:  HEAD / HTTP/1.0
+
+
+reply:  Not allowed
+recvd:  GET /system_api.php HTTP/1.1
+Host: 157.245.137.107
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 404 Not Found
+
+File Not Found!
+recvd:  GET /system_api.php HTTP/1.1
+Host: 157.245.137.107
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 404 Not Found
+
+File Not Found!
+recvd:  GET /c/version.js HTTP/1.1
+Host: 157.245.137.107
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 404 Not Found
+
+File Not Found!
+recvd:  GET /streaming/clients_live.php HTTP/1.1
+Host: 157.245.137.107
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 404 Not Found
+
+File Not Found!
+recvd:  GET /stalker_portal/c/version.js HTTP/1.1
+Host: 157.245.137.107
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+
+reply:  HTTP/1.1 404 Not Found
+
+File Not Found!
+recvd:  GET /client_area/ HTTP/1.1
+Host: 157.245.137.107
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+Accept-

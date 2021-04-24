@@ -1,6 +1,3 @@
-;; need to add parameters for (serve) i.e. (port, address)
-;; need to make the routing more modular
-
 (import socket)
 (import simple-loops)
 (import (chicken format))
@@ -14,44 +11,6 @@
 (require-extension srfi-13)
 (import router)
 
-(bind "size_t strlen(const char *);")
-(define _200_ "HTTP/1.1 200 OK\r\n")
-(define _404_ "HTTP/1.1 404 Not Found\r\n\n")
-(define _405_ "HTTP/1.1 405 Method Not Allowed \r\n\r\n")
-(define port 8080)
-(define content-type "Content-Type: text/html\r\n")
-(define content-length "Content-Length: % \r\n\r\n ")
-(define not-allowed "Not allowed")
-(define not-found "File Not Found!")
-
-;;(printf "%s" (route "index.html"))
-
-(define (get-header len)
-  (let* ((s-len (number->string len)))
-    (conc _200_ content-type
-         (string-translate*
-          content-length `(("%" . ,s-len )) ))))
-
-;; GET -PATH -VERSION
-;;return "route".html
-;;need to replace this with proper router
-(define (process-req s)
-  ;;get the path and check that it's valid
-  (let* ((path (parse-req-path s))
-         (route (if (= 1 (string-length path))
-                    "index.html"
-                    (car(string-split path "/")))))
-    (if (file-exists? route) (string-join (read-lines(open-input-file route)))
-        (conc _404_ not-found))))
-
-(define (parse-req-path s)
-  (car (cdr (string-split s))))
-
-(define (check-req s)
-  (cond
-   ((substring=? s "GET" 0 0 3) (process-req s))
-    (else conc _405_ not-allowed)))
-
 (define (init-connection addr port)
   (let ((sock (socket af/inet sock/stream)))
 	(socket-bind sock (inet-address addr port))
@@ -59,12 +18,11 @@
 	sock))
 
 (define (poll-recv csock)
-  (let* ((received-data (socket-receive csock 32768))) 
+  (let* ((received-data (socket-receive csock 32768)))
         (printf "recvd:  ~a~%" received-data)
 	(if (> (string-length received-data) 0)
 		(poll-reply csock received-data)
 		(socket-close csock))))
-
 
 ;;send header and reply
 (define (poll-reply csock data)
@@ -72,7 +30,6 @@
      	(printf "reply:  ~a~%" reply)
 	(file-write (socket-fileno csock) reply))
   (socket-close csock))
-;;close connection after this?
 
 (define (poll-socket sock)
   (if (eq? (socket-receive-ready? sock) #t)

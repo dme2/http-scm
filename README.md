@@ -9,4 +9,4 @@ todo:
     [x] test httpserver
     [x] append file types dynamically
     [] get address/port from user input
-    [] fix router hash table generation (should only happen when httpserv is started)
+	[] why is the server so slow for mobile requests? Is the socket being blocked for ~15s while reading?

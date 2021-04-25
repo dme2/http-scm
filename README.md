@@ -19,3 +19,5 @@ todo:
     [] get address/port from user input
     
     [] why is the server so slow for mobile requests? Is the socket being blocked for ~15s while reading?
+	 
+	[] move to thread pool

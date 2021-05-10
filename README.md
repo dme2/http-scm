@@ -18,6 +18,12 @@ todo:
     
     [] get address/port from user input
     
-    [] why is the server so slow for mobile requests? Is the socket being blocked for ~15s while reading?
+    [x] why is the server so slow for mobile requests? Is the socket being blocked for ~15s while reading? 
+
+	(thread pool should help soon)
 	 
-	[] move to thread pool
+    [] move to thread pool
+
+	[] write bindings to thread pool
+
+	[] figure out how to send a c style function pointer from scheme

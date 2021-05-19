@@ -11,31 +11,6 @@
 (require-extension srfi-13)
 (import router)
 
-;;;;;;;  foreign functions for the threadpool ;;;;;;;
-(foreign-declare "#include \"tj.h\"")
-
-(set! threadcount 5)
-
-(define init-thread-pool 
-  (foreign-lambda* 
-    (c-pointer (struct "pool"))
-	((int threadcount))
-	"pool* p = initPool(threadcount); C_return(p);"))
-
-(define build-job-node
-  (foreign-lambda*
-    (c-pointer (struct "job_node"))
-    	((c-pointer  func)
-	 (c-pointer  args))
-	"job_node* job = buildJobNode((void*)func, args); C_return(job);"))
-
-(define enqueue-job 
-  (foreign-lambda*
-    int
-    (((c-pointer (struct "pool")) p)
-     ((c-pointer (struct "job_node")) jn ))
-    "int err = enqueueJob(p->queue,jn); C_return(err);"))
-
 ;;;;;; main server functions
 
 (define (init-connection addr port)
@@ -61,6 +36,7 @@
 (define (poll-socket sock)
   (if (eq? (socket-receive-ready? sock) #t)
 	   ;; receive the info
+       (process-fork)
 	  (let* ((c-sock (accept-connection sock)))
 		(poll-recv c-sock))))
 

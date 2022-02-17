@@ -36,9 +36,14 @@
 (define (poll-socket sock)
   (if (eq? (socket-receive-ready? sock) #t)
 	   ;; receive the info
-       (process-fork)
 	  (let* ((c-sock (accept-connection sock)))
-		(poll-recv c-sock))))
+  		(poll-recv c-sock)
+		(let ((pid (process-fork)))
+		  (printf "\nFORKED\n")
+		  (printf "pid: ~a~%" pid)
+		  (if (> pid 0)
+			  ;(process-signal pid 9))))))
+			  (exit 0))))))
 
 (define (accept-connection sock)
   (let* ((connected-socket (socket-accept sock)))
@@ -82,3 +87,4 @@
 
 ;start server
 (http-serve "0.0.0.0" 80)
+;(http-serve "127.0.0.1" 8080)

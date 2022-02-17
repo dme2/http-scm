@@ -12,9 +12,13 @@
 (require-extension srfi-13) ;; string-join
 (require-extension srfi-69) ;; hash tables
 
+;; TODO
+;; [] pid hash table (key=pid, val=status)
+
 ;;(bind* "#include \"getfiles.h\"")
 
-(define filepath (->string "/root/stevie-scm/tests/www/"))
+;(define filepath (->string "/root/stevie-scm/tests/www/"))
+(define filepath (->string "/home/dave/projects/http-scm/site/www"))
 
 ;;(define get-files
 ;;  (foreign-lambda*
@@ -61,7 +65,7 @@
 (define not-allowed "Not allowed")
 (define not-found "File Not Found!")
 
-(define (check-for-favicon req) 
+(define (check-for-favicon req)
   (substring=? req "favicon" 5 0 7))
 
 ;; only GET's

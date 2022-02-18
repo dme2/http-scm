@@ -42,8 +42,11 @@
 		  (printf "\nFORKED\n")
 		  (printf "pid: ~a~%" pid)
 		  (if (> pid 0)
-			  ;(process-signal pid 9))))))
-			  (exit 0))))))
+			  ;(exit 0))))))
+			  (let ((w (process-wait pid #t)))
+				(printf "PROC: ~a~%" w)
+				(if (eq? w 0)
+					(exit 0))))))))
 
 (define (accept-connection sock)
   (let* ((connected-socket (socket-accept sock)))
@@ -86,5 +89,5 @@
      (socket-close sock)))
 
 ;start server
-(http-serve "0.0.0.0" 80)
-;(http-serve "127.0.0.1" 8080)
+;(http-serve "0.0.0.0" 80)
+(http-serve "127.0.0.1" 8080)

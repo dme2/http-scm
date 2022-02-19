@@ -37,25 +37,27 @@
   (if (eq? (socket-receive-ready? sock) #t)
 	   ;; receive the info
 	  (let* ((c-sock (accept-connection sock)))
-  		(poll-recv c-sock)
-		(let ((pid (process-fork)))
-		  (printf "\nFORKED\n")
-		  (printf "pid: ~a~%" pid)
-		  (if (> pid 0)
-			  ;(exit 0))))))
-			  (let ((w (process-wait pid #t)))
-				(printf "PROC: ~a~%" w)
-				(if (eq? w 0)
-					(exit 0))))))))
+  		(poll-recv c-sock))))
 
 (define (accept-connection sock)
   (let* ((connected-socket (socket-accept sock)))
 	connected-socket))
 
+(define daemonize
+  (let ((pid (process-fork)))
+	(printf "\nFORKED\n")
+	(printf "pid: ~a~%" pid)
+	(if (> pid 0) ;; we are the parent
+		(let ((w (process-wait pid #t)))
+		  (printf "PROC: ~a~%" w)
+		  (if (eq? w 0)
+			  (exit 0)))))) ;; copacetic, lets exit
+
 (define (http-serve addr port)
   ;;init connection
    (let* ((sock (init-connection addr port))
 		 (loopvar 1))
+	 daemonize
 	 (do-while (= loopvar 1)
 	   (poll-socket sock))
    (socket-close sock)))

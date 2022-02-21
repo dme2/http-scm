@@ -18,7 +18,7 @@
 ;;(bind* "#include \"getfiles.h\"")
 
 ;(define filepath (->string "/root/stevie-scm/tests/www/"))
-(define filepath (->string "/home/dave/projects/http-scm/site/www"))
+(define filepath (->string "/home/dave/projects/http-scm/site/www/"))
 
 ;;(define get-files
 ;;  (foreign-lambda*

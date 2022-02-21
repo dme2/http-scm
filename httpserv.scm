@@ -8,10 +8,9 @@
 (import (chicken file))
 (import (chicken process))
 (import bind)
+(import (chicken blob))
 (require-extension srfi-13)
 (import router)
-
-;;;;;; main server functions
 
 (define (init-connection addr port)
   (let ((sock (socket af/inet sock/stream)))
@@ -20,17 +19,16 @@
 	sock))
 
 (define (poll-recv csock)
-  (let* ((received-data (socket-receive csock 32768)))
-        (printf "recvd:  ~a~%" received-data)
-	(if (> (string-length received-data) 0)
-		(poll-reply csock received-data)
+  (let ((res (socket-receive-from csock 1024)))
+	(if (> (string-length res) 0)
+		(poll-reply csock res)
 		(socket-close csock))))
 
 ;;send header and reply
 (define (poll-reply csock data)
   (let* ((reply (route data)))
      	(printf "reply:  ~a~%" reply)
-	(file-write (socket-fileno csock) reply))
+		(socket-send-to csock reply (socket-peer-name csock)))
   (socket-close csock))
 
 (define (poll-socket sock)
